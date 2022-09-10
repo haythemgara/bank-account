@@ -25,17 +25,17 @@ public class AccountController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/createAccount")
-    void createAccount(@RequestBody final CreateAccountRequest createAccountRequest) {
+    public void createAccount(@RequestBody final CreateAccountRequest createAccountRequest) {
         accountService.depositOrCreateNew(createAccountRequest.getId(), createAccountRequest.getBalance());
     }
 
     @PostMapping(value = "/{id}/depositOrCreateNew/{amount}")
-    void deposit(@PathVariable final UUID id, @PathVariable final BigDecimal amount) {
+    public void deposit(@PathVariable final UUID id, @PathVariable final BigDecimal amount) {
         accountService.depositOrCreateNew(id, amount);
     }
 
     @PostMapping(value = "/{id}/withdraw/{amount}")
-    void withdraw(@PathVariable final UUID id, @PathVariable final BigDecimal amount) {
+    public void withdraw(@PathVariable final UUID id, @PathVariable final BigDecimal amount) {
         accountService.withdraw(id, amount);
     }
 }
